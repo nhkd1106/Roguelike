@@ -1,6 +1,7 @@
 “ Hành trình sống còn của người đàn ông trong bối cảnh hậu tận thế”
 
-![image](https://github.com/nhkd1106/Roguelike/assets/99165450/d0a753b2-2cc5-4b9b-8b55-b93b4f6a40ea)
+
+![Uploading Picture1.png…]()
 
  
 Hình Ảnh Trong Game
