@@ -38,6 +38,3 @@ public class Wall : MonoBehaviour
             gameObject.SetActive(false);
     }
 }
-
-
-
