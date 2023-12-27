@@ -58,14 +58,17 @@ public class GameManager : MonoBehaviour
         boardScript = GetComponent<BoardManager>();
 
         //Call the InitGame function to initialize the first level 
-        InitGame();
+        //InitGame();
     }
 
     //This is called each time a scene is loaded.
     void OnLevelWasLoaded(int index)
     {
         //Add one to our level number.
+        if (index==0){
         level++;
+        }
+        
         //Call InitGame to initialize our level.
         InitGame();
     }
