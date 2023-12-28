@@ -15,7 +15,7 @@ public class c : MonoBehaviour
 
     // Update is called once per frame
    public void Exit()
-    {
+    {    
          Application.Quit(0);
     }
         
