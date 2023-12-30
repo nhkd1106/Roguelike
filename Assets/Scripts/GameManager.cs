@@ -145,8 +145,8 @@ public class GameManager : MonoBehaviour
         // playerFoodPoints = 100;
         level = 0;
         doingSetup = true;
-        GameOverScreen.SetActive(true);
-        // Invoke("EnableGameOver", 2f);
+        
+        Invoke("EnableGameOver", 2f);
         
 
 
@@ -156,10 +156,10 @@ public class GameManager : MonoBehaviour
         // enabled = false;
     }
 
-    // private void EnableGameOver()
-    // {
-    //     GameOverScreen.SetActive(true);
-    // }
+    private void EnableGameOver()
+    {
+        GameOverScreen.SetActive(true);
+    }
 
     // Function to switch to another scene
     // private void SwitchToOtherScene()
