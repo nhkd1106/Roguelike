@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using Completed;
 using UnityEngine.UI;        //Allows us to use Lists. 
+using UnityEngine.SceneManagement;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -32,6 +34,7 @@ public class GameManager : MonoBehaviour
     //Boolean to check if we're setting up board, prevent Player from moving during setup.
     private bool doingSetup = true;
 
+    private GameObject GameOverScreen;
 
     //Awake is always called before any Start functions
     void Awake()
@@ -80,6 +83,10 @@ public class GameManager : MonoBehaviour
         //Get a reference to our text LevelText's text component by finding it by name and calling GetComponent.
         levelText = GameObject.Find("LevelText").GetComponent<Text>();
         levelText.text = "Day " + (level - 1);
+
+        GameOverScreen = GameObject.Find("GameOverScreen");
+        GameOverScreen.SetActive(false);
+
         //Set levelImage to active blocking player's view of the game board during setup.
         levelImage.SetActive(true);
 
@@ -135,9 +142,32 @@ public class GameManager : MonoBehaviour
         //Enable black background image gameObject.
         levelImage.SetActive(true);
 
+        // playerFoodPoints = 100;
+        level = 0;
+        doingSetup = true;
+        GameOverScreen.SetActive(true);
+        // Invoke("EnableGameOver", 2f);
+        
+
+
+
+
         //Disable this GameManager.
-        enabled = false;
+        // enabled = false;
     }
+
+    // private void EnableGameOver()
+    // {
+    //     GameOverScreen.SetActive(true);
+    // }
+
+    // Function to switch to another scene
+    // private void SwitchToOtherScene()
+    // {
+    //     // Load the scene with the name "YourOtherSceneName"
+    //     SceneManager.LoadScene("GameOverScene");
+    // }
+
 
     //Coroutine to move enemies in sequence.
     IEnumerator MoveEnemies()
