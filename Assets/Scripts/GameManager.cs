@@ -3,8 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Completed;
 using UnityEngine.UI;        //Allows us to use Lists. 
-using UnityEngine.SceneManagement;
-
 
 public class GameManager : MonoBehaviour
 {
@@ -34,7 +32,6 @@ public class GameManager : MonoBehaviour
     //Boolean to check if we're setting up board, prevent Player from moving during setup.
     private bool doingSetup = true;
 
-    private GameObject GameOverScreen;
 
     //Awake is always called before any Start functions
     void Awake()
@@ -61,14 +58,17 @@ public class GameManager : MonoBehaviour
         boardScript = GetComponent<BoardManager>();
 
         //Call the InitGame function to initialize the first level 
-        InitGame();
+        //InitGame();
     }
 
     //This is called each time a scene is loaded.
     void OnLevelWasLoaded(int index)
     {
         //Add one to our level number.
+        if (index==0){
         level++;
+        }
+        
         //Call InitGame to initialize our level.
         InitGame();
     }
@@ -82,11 +82,7 @@ public class GameManager : MonoBehaviour
         levelImage = GameObject.Find("LevelImage");
         //Get a reference to our text LevelText's text component by finding it by name and calling GetComponent.
         levelText = GameObject.Find("LevelText").GetComponent<Text>();
-        levelText.text = "Day " + level;
-
-        GameOverScreen = GameObject.Find("GameOverScreen");
-        GameOverScreen.SetActive(false);
-
+        levelText.text = "Day " + (level - 1);
         //Set levelImage to active blocking player's view of the game board during setup.
         levelImage.SetActive(true);
 
@@ -137,37 +133,14 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         //Set levelText to display number of levels passed and game over message
-        levelText.text = "After " + level + " days, you starved.";
+        levelText.text = "After " + (level - 1) + " days, you starved.";
 
         //Enable black background image gameObject.
         levelImage.SetActive(true);
 
-        // playerFoodPoints = 100;
-        level = 0;
-        doingSetup = true;
-        
-        Invoke("EnableGameOver", 2f);
-        
-
-
-
-
         //Disable this GameManager.
-        // enabled = false;
+        enabled = false;
     }
-
-    private void EnableGameOver()
-    {
-        GameOverScreen.SetActive(true);
-    }
-
-    // Function to switch to another scene
-    // private void SwitchToOtherScene()
-    // {
-    //     // Load the scene with the name "YourOtherSceneName"
-    //     SceneManager.LoadScene("GameOverScene");
-    // }
-
 
     //Coroutine to move enemies in sequence.
     IEnumerator MoveEnemies()

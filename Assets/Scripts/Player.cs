@@ -243,7 +243,6 @@ public class Player : MovingObject
             SoundManager.instance.musicSource.Stop();
             //Call the GameOver function of GameManager.
             GameManager.instance.GameOver();
-            food =100;
         }
     }
 }
