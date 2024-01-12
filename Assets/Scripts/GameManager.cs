@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Completed;
 using UnityEngine.UI;        //Allows us to use Lists. 
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -32,6 +33,7 @@ public class GameManager : MonoBehaviour
     //Boolean to check if we're setting up board, prevent Player from moving during setup.
     private bool doingSetup = true;
 
+    private GameObject GameOverScreen;
 
     //Awake is always called before any Start functions
     void Awake()
@@ -86,6 +88,10 @@ public class GameManager : MonoBehaviour
         //Set levelImage to active blocking player's view of the game board during setup.
         levelImage.SetActive(true);
 
+
+        GameOverScreen = GameObject.Find("GameOverScreen");
+        GameOverScreen.SetActive(false);
+
         //Call the HideLevelImage function with a delay in seconds of levelStartDelay.
         Invoke("HideLevelImage", levelStartDelay);
 
@@ -138,8 +144,18 @@ public class GameManager : MonoBehaviour
         //Enable black background image gameObject.
         levelImage.SetActive(true);
 
+        level = 0;
+        doingSetup = true;
+        
+        Invoke("EnableGameOver", 2f);
+
         //Disable this GameManager.
-        enabled = false;
+        // enabled = false;
+    }
+
+    private void EnableGameOver()
+    {
+        GameOverScreen.SetActive(true);
     }
 
     //Coroutine to move enemies in sequence.
