@@ -11,13 +11,13 @@ public class PauseResume : MonoBehaviour
     bool GamePaused;
  
  
-    // Start is called before the first frame update
+    
     void Start()
     {
         GamePaused = false;
     }
  
-    // Update is called once per frame
+    
     void Update()
     {
         if (GamePaused)
