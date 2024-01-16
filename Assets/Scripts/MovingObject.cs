@@ -15,7 +15,7 @@ public abstract class MovingObject : MonoBehaviour
         
         rb2D = GetComponent<Rigidbody2D>();
         
-        inverseMoveTime = 1f / moveTime;
+        inverseMoveTime = 1.5f / moveTime;
     }
     
     
